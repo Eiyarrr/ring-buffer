@@ -38,4 +38,6 @@ bool RingBufferIsFull(const RingBuffer *buffer) {
     return (buffer == NULL || buffer->count == BUFFER_SIZE);
 }
 
-void RingBufferClear(RingBuffer *buffer) {}
+void RingBufferClear(RingBuffer *buffer) {
+    RingBufferInit(buffer);
+}
