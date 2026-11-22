@@ -34,6 +34,8 @@ bool RingBufferIsEmpty(const RingBuffer *buffer) {
     return (buffer == NULL || buffer->count == 0);
 }
 
-bool RingBufferIsFull(const RingBuffer *buffer) {}
+bool RingBufferIsFull(const RingBuffer *buffer) {
+    return (buffer == NULL || buffer->count == BUFFER_SIZE);
+}
 
 void RingBufferClear(RingBuffer *buffer) {}
