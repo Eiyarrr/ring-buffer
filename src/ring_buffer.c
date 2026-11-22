@@ -18,7 +18,17 @@ bool RingBufferPush(RingBuffer *buffer, uint8_t value) {
     return true;
 }
 
-bool RingBufferPop(RingBuffer *buffer, uint8_t *value) {}
+bool RingBufferPop(RingBuffer *buffer, uint8_t *value) {
+    if (buffer == NULL || value == NULL || RingBufferIsEmpty(buffer)) {
+        return false;
+    }
+
+    *value = buffer->data[buffer->tail];
+    buffer->tail = (buffer->tail + 1) % BUFFER_SIZE;
+    buffer->count--;
+
+    return true;
+}
 
 bool RingBufferIsEmpty(const RingBuffer *buffer) {}
 
