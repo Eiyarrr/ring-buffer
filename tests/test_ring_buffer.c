@@ -10,9 +10,13 @@ int main(void) {
     }
 
     uint8_t x = 10;
-    RingBufferPush(buffer, x);
+    if (!RingBufferPush(buffer, x)) {
+        printf("failed to push");
+    }
     uint8_t *y = malloc(sizeof(uint8_t));
-    RingBufferPop(buffer, y);
+    if (!RingBufferPop(buffer, y)) {
+        printf("failed to pop");
+    }
     if (x != *y) {
         printf("expected same pop as push");
     }
@@ -46,5 +50,26 @@ int main(void) {
         printf("expected pass on null buffer in IsEmpty");
     }
 
+    RingBufferPush(buffer, 10);
+    RingBufferPush(buffer, 20);
+    RingBufferPush(buffer, 30);
+    RingBufferPop(buffer, y);
+    RingBufferPop(buffer, y);
+
+    RingBufferPush(buffer, 40);
+    RingBufferPush(buffer, 50);
+    RingBufferPop(buffer, y);
+    if (*y != 30) {
+        printf("expected pop of value 30");
+    }
+    RingBufferPop(buffer, y);
+    if (*y != 40) {
+        printf("expected pop of value 40");
+    }
+    RingBufferPop(buffer, y);
+    if (*y != 50) {
+        printf("expected pop of value 50");
+    }
+    
     printf("tests finished");
 }
