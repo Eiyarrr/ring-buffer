@@ -1,6 +1,10 @@
 #include "ring_buffer.h"
 
 void RingBufferInit(RingBuffer *buffer) {
+    if (buffer == NULL) {
+        return;
+    }
+
     buffer->head = 0;
     buffer->tail = 0;
     buffer->count = 0;
@@ -38,6 +42,4 @@ bool RingBufferIsFull(const RingBuffer *buffer) {
     return (buffer == NULL || buffer->count == BUFFER_SIZE);
 }
 
-void RingBufferClear(RingBuffer *buffer) {
-    RingBufferInit(buffer);
-}
+void RingBufferClear(RingBuffer *buffer) { RingBufferInit(buffer); }
