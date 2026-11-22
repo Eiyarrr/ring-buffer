@@ -6,7 +6,17 @@ void RingBufferInit(RingBuffer *buffer) {
     buffer->count = 0;
 }
 
-bool RingBufferPush(RingBuffer *buffer, uint8_t value) {}
+bool RingBufferPush(RingBuffer *buffer, uint8_t value) {
+    if (buffer == NULL || RingBufferIsFull(buffer)) {
+        return false;
+    }
+
+    buffer->data[buffer->head] = value;
+    buffer->head = (buffer->head + 1) % BUFFER_SIZE;
+    buffer->count++;
+
+    return true;
+}
 
 bool RingBufferPop(RingBuffer *buffer, uint8_t *value) {}
 
