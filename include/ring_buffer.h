@@ -13,4 +13,14 @@ typedef struct {
     size_t count;
 } RingBuffer;
 
+void RingBufferInit(RingBuffer *buffer);
+
+bool RingBufferPush(RingBuffer *buffer, uint8_t value);
+bool RingBufferPop(RingBuffer *buffer, uint8_t *value);
+
+bool RingBufferIsEmpty(const RingBuffer *buffer);
+bool RingBufferIsFull(const RingBuffer *buffer);
+
+void RingBufferClear(RingBuffer *buffer);
+
 #endif
