@@ -45,4 +45,6 @@ int main(void) {
     if (!RingBufferIsEmpty(NULL)) {
         printf("expected pass on null buffer in IsEmpty");
     }
+
+    printf("tests finished");
 }
