@@ -30,7 +30,9 @@ bool RingBufferPop(RingBuffer *buffer, uint8_t *value) {
     return true;
 }
 
-bool RingBufferIsEmpty(const RingBuffer *buffer) {}
+bool RingBufferIsEmpty(const RingBuffer *buffer) {
+    return (buffer == NULL || buffer->count == 0);
+}
 
 bool RingBufferIsFull(const RingBuffer *buffer) {}
 
